@@ -1,0 +1,25 @@
+{
+  "name": "telex-summarizer-agent",
+  "version": "1.0.0",
+  "description": "A Mastra agent to summarize webpages for Telex.im.",
+  "main": "src/mastra/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "mastra dev",
+    "build": "mastra build"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^0.0.24",
+    "@mastra/core": "latest",
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "mastra": "latest",
+    "typescript": "^5.5.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
