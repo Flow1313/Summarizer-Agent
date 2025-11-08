@@ -6,7 +6,7 @@ import { generateEmptyFromSchema, checkEvalStorageFields } from '@mastra/core/ut
 import { Mastra } from '@mastra/core/mastra';
 import { Agent, tryGenerateWithJsonFallback, tryStreamWithJsonFallback, MessageList, convertMessages } from '@mastra/core/agent';
 import { google } from '@ai-sdk/google';
-import { fetchWebContentTool } from './tools/667c45e2-8a39-4e00-959c-4a056b5b7bab.mjs';
+import { fetchWebContentTool } from './tools/3b6aa0b6-fc77-4653-8737-f6d58c2f2853.mjs';
 import crypto$1, { randomUUID } from 'crypto';
 import { readdir, readFile, mkdtemp, rm, writeFile, mkdir, copyFile, stat } from 'fs/promises';
 import * as https from 'https';

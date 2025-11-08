@@ -8,7 +8,7 @@ import '@mastra/core/utils';
 import '@mastra/core/mastra';
 import '@mastra/core/agent';
 import '@ai-sdk/google';
-import './tools/667c45e2-8a39-4e00-959c-4a056b5b7bab.mjs';
+import './tools/3b6aa0b6-fc77-4653-8737-f6d58c2f2853.mjs';
 import '@mastra/core/tools';
 import 'axios';
 import 'cheerio';
