@@ -6,7 +6,7 @@ import { generateEmptyFromSchema, checkEvalStorageFields } from '@mastra/core/ut
 import { Mastra } from '@mastra/core/mastra';
 import { Agent, tryGenerateWithJsonFallback, tryStreamWithJsonFallback, MessageList, convertMessages } from '@mastra/core/agent';
 import { google } from '@ai-sdk/google';
-import { fetchWebContentTool } from './tools/3662caa6-1e8f-4ae2-ba57-03dfc794a680.mjs';
+import { fetchWebContentTool } from './tools/667c45e2-8a39-4e00-959c-4a056b5b7bab.mjs';
 import crypto$1, { randomUUID } from 'crypto';
 import { readdir, readFile, mkdtemp, rm, writeFile, mkdir, copyFile, stat } from 'fs/promises';
 import * as https from 'https';
@@ -44,17 +44,40 @@ import 'cheerio';
 
 const summarizerAgent = new Agent({
   id: "summarizer-agent",
-  // ✅ explicitly set an ID for API route
+  // API endpoint: /api/agents/summarizer-agent/ask
   name: "Summarizer Agent",
+  description: "Summarizes long text or web content into concise summaries.",
   model: google("models/gemini-2.5-flash-preview-09-2025"),
-  tools: { fetchWebContentTool }
+  tools: {
+    fetchWebContentTool
+  },
+  systemPrompt: `
+You are a summarizing assistant. Your job is to:
+1. Condense long text into concise, accurate summaries.
+2. Highlight key points and main ideas.
+3. Summarize webpage content if a URL is provided, using fetchWebContentTool.
+Respond clearly and in readable paragraphs or bullet points.
+  `,
+  handleInput: async (input, tools) => {
+    const urlPattern = /https?:\/\/[^\s]+/;
+    if (urlPattern.test(input)) {
+      const content = await tools.fetchWebContentTool({ url: input });
+      return `Summarize this content: ${content}`;
+    }
+    return `Summarize this text: ${input}`;
+  }
 });
 
 const mastra = new Mastra({
-  agents: {
-    // The key 'summarizerAgent' MUST match the agent's 'name'
-    // and the name used in the Telex Workflow URL.
-    summarizerAgent
+  agents: [summarizerAgent],
+  // ✅ register agents as an array
+  bundler: {
+    externals: ["axios"]
+    // ✅ prevent build errors with axios
+  },
+  observability: {
+    aiTracing: true
+    // optional, replaces deprecated telemetry
   }
 });
 
