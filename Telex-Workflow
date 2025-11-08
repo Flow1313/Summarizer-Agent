@@ -1,0 +1,27 @@
+{
+  "active": true,
+  "category": "utilities",
+  "description": "An AI agent that summarizes webpages.",
+  "id": "YOUR_UNIQUE_WORKFLOW_ID",
+  "long_description": "\n      You are a helpful AI assistant named 'Summarizer'.\n\n      When a user gives you a URL, your job is to fetch the content of that webpage and provide a concise summary.\n\n      Example Request:\n      \"@Summarizer can you summarize https://www.a2aprotocol.org/\"\n\n      You will then use your tools to fetch the content and generate the summary.\n",
+  "name": "Web Summarizer Agent",
+  "nodes": [
+    {
+      "id": "summarizer_node",
+      "name": "Web Summarizer Node",
+      "parameters": {},
+      "position": [
+        816,
+        -112
+      ],
+      "type": "a2a/mastra-a2a-node",
+      "typeVersion": 1,
+      "url": "YOUR_MASTRA_DEPLOYMENT_URL/a2a/agent/summarizerAgent"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "short_description": "Summarizes any URL."
+}

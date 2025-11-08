@@ -1,6 +1,3 @@
-const bundler = {
-  externals: ["axios"]
-  // ✅ prevent build errors with axios
-};
+const bundler = {};
 
 export { bundler };

@@ -6,7 +6,7 @@ import { generateEmptyFromSchema, checkEvalStorageFields } from '@mastra/core/ut
 import { Mastra } from '@mastra/core/mastra';
 import { Agent, tryGenerateWithJsonFallback, tryStreamWithJsonFallback, MessageList, convertMessages } from '@mastra/core/agent';
 import { google } from '@ai-sdk/google';
-import { fetchWebContentTool } from './tools/3b6aa0b6-fc77-4653-8737-f6d58c2f2853.mjs';
+import { fetchWebContentTool } from './tools/1673aac6-4fda-4fc6-85de-bf90d762b93d.mjs';
 import crypto$1, { randomUUID } from 'crypto';
 import { readdir, readFile, mkdtemp, rm, writeFile, mkdir, copyFile, stat } from 'fs/promises';
 import * as https from 'https';
@@ -69,15 +69,10 @@ Respond clearly and in readable paragraphs or bullet points.
 });
 
 const mastra = new Mastra({
-  agents: [summarizerAgent],
-  // ✅ register agents as an array
-  bundler: {
-    externals: ["axios"]
-    // ✅ prevent build errors with axios
-  },
-  observability: {
-    aiTracing: true
-    // optional, replaces deprecated telemetry
+  agents: {
+    // The key 'summarizerAgent' MUST match the agent's 'name'
+    // and the name used in the Telex Workflow URL.
+    summarizerAgent
   }
 });
 

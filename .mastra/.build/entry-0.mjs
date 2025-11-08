@@ -73,15 +73,10 @@ Respond clearly and in readable paragraphs or bullet points.
 });
 
 const mastra = new Mastra({
-  agents: [summarizerAgent],
-  // ✅ register agents as an array
-  bundler: {
-    externals: ["axios"]
-    // ✅ prevent build errors with axios
-  },
-  observability: {
-    aiTracing: true
-    // optional, replaces deprecated telemetry
+  agents: {
+    // The key 'summarizerAgent' MUST match the agent's 'name'
+    // and the name used in the Telex Workflow URL.
+    summarizerAgent
   }
 });
 
